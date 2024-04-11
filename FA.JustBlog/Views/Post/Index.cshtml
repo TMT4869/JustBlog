@@ -138,19 +138,21 @@
         }
     </div>
 </div>
-<script src="~/js/scripts.js"></script>
-<script>
-    document.getElementById('pageSize').value = '@Model.PageSize';
-    if (window.location.href.includes("Category")) {
-        var categoryLinks = document.querySelectorAll(".categorylink");
-        categoryLinks.forEach(function (categoryLink) {
-            categoryLink.remove();
-        });
-    }
-    if (window.location.href.includes("Tag")) {
-        var tagLinks = document.querySelectorAll(".taglink");
-        tagLinks.forEach(function (tagLink) {
-            tagLink.remove();
-        });
-    }
-</script>
+
+@section Scripts {
+    <script>
+        document.getElementById('pageSize').value = '@Model.PageSize';
+        if (window.location.href.includes("Category")) {
+            var categoryLinks = document.querySelectorAll(".categorylink");
+            categoryLinks.forEach(function (categoryLink) {
+                categoryLink.remove();
+            });
+        }
+        if (window.location.href.includes("Tag")) {
+            var tagLinks = document.querySelectorAll(".taglink");
+            tagLinks.forEach(function (tagLink) {
+                tagLink.remove();
+            });
+        }
+    </script>
+}
