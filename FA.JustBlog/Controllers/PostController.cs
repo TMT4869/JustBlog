@@ -48,20 +48,6 @@ namespace FA.JustBlog.Controllers
             return View(postsVM.ToPagedList(pageNumber, pageSize));
         }
 
-        public IActionResult LatestPost()
-        {
-            var latestPosts = _unitOfWork.PostRepository.GetLatestPost(5).ToList();
-            var latestPostsVM = _mapper.Map<List<PostVM>>(latestPosts);
-            return PartialView("_ListPosts", latestPostsVM);
-        }
-
-        public IActionResult MostViewedPosts()
-        {
-            var mostViewedPosts = _unitOfWork.PostRepository.GetMostViewedPost(5).ToList();
-            var mostViewedPostsVM = _mapper.Map<List<PostVM>>(mostViewedPosts);
-            return PartialView("_ListPosts", mostViewedPostsVM);
-        }
-
         public IActionResult Category(string name, int? page)
         {
             int pageNumber = (page ?? 1);

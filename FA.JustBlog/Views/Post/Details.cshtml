@@ -61,11 +61,7 @@
                                     <h3 class="post-title">@item.Name</h3>
                                     <span class="post-meta">@item.CommentedTime</span>
                                 </div>
-
-                                <p>
-                                    <h5>@item.CommentHeader</h5>
-                                    @Html.Raw(item.CommentText)
-                                </p>
+                                @Html.Raw(item.CommentText)
                             </div>
                         }
                     </div>
