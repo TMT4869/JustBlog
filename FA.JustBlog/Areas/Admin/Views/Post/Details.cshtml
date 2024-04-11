@@ -1,0 +1,98 @@
+﻿@model FA.JustBlog.Core.Models.ViewModels.PostVM
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Post</h1>
+        <hr />
+        <dl class="row border p-3">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.ShortDescription)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ShortDescription)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.PostContent)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.PostContent)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.UrlSlug)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.UrlSlug)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Published)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Published)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.PostedOn)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.PostedOn)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Modified)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Modified)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.ViewCount)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ViewCount)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.RateCount)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.RateCount)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.TotalRate)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.TotalRate)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.CategoryName)
+            </dd>
+        </dl>
+        <div class="row mt-2">
+            <div class="form-group col-6 col-md-3 d-grid gap-2">
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+            </div>
+            <div class="col-6 col-md-3 d-grid gap-2">
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+@section Scripts {
+    <script>
+        CKSource.Editor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}

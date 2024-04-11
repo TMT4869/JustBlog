@@ -1,0 +1,57 @@
+﻿@model FA.JustBlog.Core.Models.ViewModels.CommentVM
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Comment</h1>
+        <hr />
+        <dl class="row border p-3">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.CommentHeader)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.CommentHeader)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.CommentText)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.CommentText)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.CommentedTime)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.CommentedTime)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.PostTitle)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.PostTitle)
+            </dd>
+        </dl>
+        <div class="row mt-2">
+            <div class="form-group col-6 col-md-3 d-grid gap-2">
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+            </div>
+            <div class="col-6 col-md-3 d-grid gap-2">
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</main>

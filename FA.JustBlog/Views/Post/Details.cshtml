@@ -1,0 +1,76 @@
+﻿﻿@using FA.JustBlog.Core.Models.ViewModels
+@using System.Text.RegularExpressions
+@model PostVM
+
+@{
+    int count = ViewBag.Comments.Count;
+    var commentList = ViewBag.Comments as List<CommentVM>;
+    ViewBag.Title = Model.Title;
+}
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url(/assets/img/post-bg.jpg)">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>@Model.Title</h1>
+                    <h2 class="subheading">@Model.ShortDescription</h2>
+                    <span class="meta">
+                        Posted by
+                        <a href="#!">Nguyen Hao</a>
+                        on
+                        @{
+                            var postedOn = Model.PostedOn.ToString("MMMM dd, yyyy");
+                        }
+                        <span>@postedOn</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content-->
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                @Html.Raw(Model.PostContent)
+            </div>
+        </div>
+    </div>
+</article>
+<!--Comments List-->
+<section class="bg-light">
+    <div class="container px-4 px-lg-5 py-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase mt-0">Comments</h2>
+                    <h3 class="section-subheading text-muted">What do you think about this post?</h3>
+                    <h4 class="section-subheading text-muted">@count comment(s)</h4>
+                </div>
+                @if (count > 0)
+                {
+                    <div class="d-flex mt-4">
+                        @foreach (var item in commentList)
+                        {
+                            <img class="d-flex rounded-circle me-2" src="https://top10camau.vn/wp-content/uploads/2022/10/avatar-meo-cute-5.jpg" alt="Image Description" style="max-width: 50px; max-height: 50px;">
+                            <div class="shadow-sm p-3 bg-body rounded flex-grow-1 ml-3">
+                                <div class="post-preview">
+                                    <h3 class="post-title">@item.Name</h3>
+                                    <span class="post-meta">@item.CommentedTime</span>
+                                </div>
+
+                                <p>
+                                    <h5>@item.CommentHeader</h5>
+                                    @Html.Raw(item.CommentText)
+                                </p>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

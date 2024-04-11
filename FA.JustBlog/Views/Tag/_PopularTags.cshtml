@@ -1,0 +1,15 @@
+﻿@using FA.JustBlog.Core.Models.ViewModels
+@using FA.JustBlog.CustomHelper
+@model List<TagVM>
+
+<div class="post-preview">
+    <h3>
+        Most Popular Tags
+    </h3>
+    @foreach (var item in Model)
+    {
+        <div class="d-inline-block" style="transform: translateX(-8px);">@Html.TagLink($"/Post/Tag?name={item.Name}", item.Name)</div>
+    }
+
+</div>
+<hr class="my-4">

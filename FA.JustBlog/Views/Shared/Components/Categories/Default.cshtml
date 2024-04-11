@@ -1,0 +1,8 @@
+﻿@model List<FA.JustBlog.Core.Models.Category>
+
+@foreach (var category in Model)
+{
+    <li class="nav-item">
+        <a class="nav-link px-lg-3 py-3 py-lg-4" asp-area="" asp-controller="Post" asp-action="Category" asp-route-name="@category.Name">@category.Name</a>
+    </li>
+}

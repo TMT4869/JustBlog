@@ -1,0 +1,26 @@
+﻿@using FA.JustBlog.Core.Models.ViewModels
+@model List<PostVM>
+<hr class="my-4">
+@foreach (var item in Model)
+{
+    <div class="post-preview">
+        <h5 class="post-title">
+            @Html.ActionLink(item.Title, "Details", "Post", new
+                {
+                    year = item.PostedOn.Year,
+                    month = item.PostedOn.Month.ToString("00"),
+                    title = item.UrlSlug
+                })
+        </h5>
+
+        <p class="post-meta">
+            Posted on
+            @{
+                var postedOn = item.PostedOn.ToString("MMMM dd, yyyy");
+            }
+            <span>@postedOn&ensp;</span>
+            <i class="fa-regular fa-eye"></i> @item.ViewCount
+        </p>
+    </div>
+    <hr class="my-4">
+}

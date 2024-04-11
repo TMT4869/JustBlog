@@ -1,0 +1,80 @@
+﻿@model FA.JustBlog.Core.Models.ViewModels.CommentVM
+@{
+    ViewBag.Title = "Create Comment";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Comment</h1>
+        <hr />
+        <div class="row">
+            <div class="col-md-11">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CommentHeader" class="control-label">Comment Header</label>
+                        <input asp-for="CommentHeader" class="form-control" />
+                        <span asp-validation-for="CommentHeader" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CommentText" class="control-label">Comment Text</label>
+                        <textarea asp-for="CommentText" class="form-control" id="editor"></textarea>
+                        <span asp-validation-for="CommentText" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CommentedTime" class="control-label">Commented Time</label>
+                        <input asp-for="CommentedTime" class="form-control" />
+                        <span asp-validation-for="CommentedTime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PostId" class="control-label">Post</label>
+                        <select asp-for="PostId" id="single-select-clear-field" data-placeholder="--Select Post--" class="form-control" asp-items="ViewBag.PostId">
+                            <option></option>
+                        </select>
+                        <span asp-validation-for="PostId" class="text-danger"></span>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="form-group col-6 col-md-3 d-grid gap-2">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                        <div class="col-6 col-md-3 d-grid gap-2">
+                            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    <script>
+        CKSource.Editor
+            .create(document.querySelector('#editor'), {
+                toolbar: ['link', 'imageInsert', 'mediaEmbed']
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        $('#single-select-clear-field').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            allowClear: true
+        });
+    </script>
+    @{
+        <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
+    }
+}
