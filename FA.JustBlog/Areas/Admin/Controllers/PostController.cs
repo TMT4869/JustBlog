@@ -13,11 +13,13 @@ namespace FA.JustBlog.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+
         public PostController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
+
         public IActionResult Index()
         {
             var posts = _unitOfWork.PostRepository.GetAll().ToList();
@@ -77,13 +79,13 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View(postVM);
         }
 
-
         public IActionResult Create()
         {
             ViewBag.AvailableTags = _unitOfWork.TagRepository.GetAll();
             ViewBag.CategoryId = new SelectList(_unitOfWork.CategoryRepository.GetAll(), "Id", "Name");
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(PostVM postVM, List<int> Tags)
@@ -127,7 +129,6 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
-
 
         public IActionResult Latest()
         {
