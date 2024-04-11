@@ -30,8 +30,7 @@ namespace FA.JustBlog.Core.Data
                         Name = "Entertainment",
                         UrlSlug = UrlSlugGenerate.GenerateSlug("Entertainment"),
                         Description = "Articles related to entertainment."
-                    }
-                );
+                    });
 
             modelBuilder.Entity<Tag>()
                 .HasData(
@@ -66,8 +65,7 @@ namespace FA.JustBlog.Core.Data
                         UrlSlug = UrlSlugGenerate.GenerateSlug("Anime"),
                         Description = "Articles related to anime.",
                         Count = 5
-                    }
-                );
+                    });
 
             modelBuilder.Entity<Post>()
                 .HasData(
@@ -145,16 +143,15 @@ namespace FA.JustBlog.Core.Data
                         ViewCount = 50,
                         RateCount = 32,
                         TotalRate = 157
-                    }
-                );
+                    });
 
             modelBuilder.Entity<PostTagMap>()
                 .HasData(
                     new PostTagMap { PostId = 1, TagId = 1 },
                     new PostTagMap { PostId = 2, TagId = 2 },
                     new PostTagMap { PostId = 3, TagId = 1 },
-                    new PostTagMap { PostId = 4, TagId = 3 }
-                );
+                    new PostTagMap { PostId = 4, TagId = 3 });
+
             modelBuilder.Entity<Comment>()
                 .HasData(
                     new Comment
@@ -186,8 +183,7 @@ namespace FA.JustBlog.Core.Data
                         CommentText = "The AI Era has arrived",
                         CommentedTime = new DateTime(2024, 3, 26),
                         PostId = 2
-                    }
-                );
+                    });
         }
     }
 }

@@ -1,5 +1,6 @@
 using FA.JustBlog.Core.AutoMapper;
 using FA.JustBlog.Core.Data;
+using FA.JustBlog.Core.Models;
 using FA.JustBlog.Core.Repositories;
 using FA.JustBlog.Core.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<JustBlogContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<JustBlogContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Add session services
@@ -36,6 +40,7 @@ app.UseSession();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -53,5 +58,7 @@ app.MapControllerRoute(
     name: "Admin",
     pattern: "{area=Admin}/{controller=Home}/{action=Index}/{id?}"
 );
+
+app.MapRazorPages();
 
 app.Run();

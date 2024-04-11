@@ -43,6 +43,7 @@
                         <a class="nav-link px-lg-3 py-3 py-lg-4" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
                     </li>
                     @await Component.InvokeAsync("Categories")
+                    <partial name="_LoginPartial" />
                 </ul>
             </div>
         </div>

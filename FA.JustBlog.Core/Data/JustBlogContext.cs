@@ -1,10 +1,16 @@
 ﻿using FA.JustBlog.Core.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FA.JustBlog.Core.Data
 {
-    public class JustBlogContext : DbContext
+    public class JustBlogContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
+        public JustBlogContext()
+        {
+        }
+
         public JustBlogContext(DbContextOptions<JustBlogContext> options) : base(options)
         {
         }
