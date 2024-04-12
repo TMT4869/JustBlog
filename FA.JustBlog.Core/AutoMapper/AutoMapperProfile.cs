@@ -32,6 +32,9 @@ namespace FA.JustBlog.Core.AutoMapper
                 config.CreateMap<Comment, CommentVM>()
                     .ForMember(dest => dest.PostTitle, opt => opt.MapFrom(src => src.Post.Title));
                 config.CreateMap<CommentVM, Comment>();
+
+                config.CreateMap<ApplicationUser, UserVM>();
+                config.CreateMap<UserVM, ApplicationUser>();
             });
             return mapperConfig.CreateMapper();
         }
