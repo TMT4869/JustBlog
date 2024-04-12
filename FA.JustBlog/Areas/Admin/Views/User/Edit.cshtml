@@ -1,0 +1,94 @@
+﻿@model FA.JustBlog.Core.Models.ViewModels.UserVM
+@{
+    ViewBag.Title = "Edit User";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">User</h1>
+        <hr />
+        <div class="row">
+            <div class="col-md-11">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UserName" class="control-label"></label>
+                        <input asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" data-val="false" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Age" class="control-label"></label>
+                        <input asp-for="Age" class="form-control" />
+                        <span asp-validation-for="Age" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="About" class="control-label"></label>
+                        <textarea asp-for="About" class="form-control"></textarea>
+                        <span asp-validation-for="About" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="Roles" class="control-label">Roles</label>
+                        <select id="multiple-select-clear-field" name="Roles" data-placeholder="--Select Roles--" class="form-control" multiple>
+                            @foreach (var role in ViewBag.Roles)
+                            {
+                                if (Model.Roles != null && Model.Roles.Contains(role.Name))
+                                {
+                                    <option value="@role.Name" selected>@role.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@role.Name">@role.Name</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="Roles" class="text-danger"></span>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="form-group col-6 col-md-3 d-grid gap-2">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                        <div class="col-6 col-md-3 d-grid gap-2">
+                            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    <script>
+        $('#multiple-select-clear-field').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: false,
+            allowClear: true,
+        });
+    </script>
+    @{
+        <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
+    }
+}
