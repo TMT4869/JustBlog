@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using FA.JustBlog.Core.Models.ViewModels;
 using FA.JustBlog.Core.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FA.JustBlog.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
