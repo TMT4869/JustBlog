@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FA.JustBlog.Core.Models;
 using FA.JustBlog.Core.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,7 +42,6 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View(usersVM);
         }
 
-
         public async Task<IActionResult> Details(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
@@ -54,6 +54,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View(userVM);
         }
 
+        [Authorize(Roles = "BlogOwner")]
         public IActionResult Create()
         {
             ViewBag.Roles = _roleManager.Roles;
@@ -88,6 +89,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View(userVM);
         }
 
+        [Authorize(Roles = "BlogOwner")]
         public async Task<IActionResult> Edit(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
@@ -164,6 +166,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View(userVM);
         }
 
+        [Authorize(Roles = "BlogOwner")]
         [HttpDelete]
         public async Task<IActionResult> Delete(string id)
         {

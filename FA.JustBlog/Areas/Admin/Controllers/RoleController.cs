@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FA.JustBlog.Areas.Admin.Controllers
@@ -19,6 +20,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View(_roleManager.Roles);
         }
 
+        [Authorize(Roles = "BlogOwner")]
         public IActionResult Create()
         {
             return View();
@@ -43,6 +45,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View(role);
         }
 
+        [Authorize(Roles = "BlogOwner")]
         public async Task<IActionResult> Edit(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -72,6 +75,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View(role);
         }
 
+        [Authorize(Roles = "BlogOwner")]
         [HttpDelete]
         public async Task<IActionResult> Delete(string id)
         {

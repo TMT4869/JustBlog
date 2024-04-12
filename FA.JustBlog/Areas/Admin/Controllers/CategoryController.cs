@@ -2,6 +2,7 @@
 using FA.JustBlog.Core.Models;
 using FA.JustBlog.Core.Models.ViewModels;
 using FA.JustBlog.Core.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FA.JustBlog.Areas.Admin.Controllers
@@ -18,6 +19,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
+
         public IActionResult Index()
         {
             var categories = _unitOfWork.CategoryRepository.GetAll();
@@ -39,6 +41,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "BlogOwner, Contributor")]
         public IActionResult Create()
         {
             return View();
@@ -58,6 +61,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View();
         }
 
+        [Authorize(Roles = "BlogOwner, Contributor")]
         public IActionResult Edit(int? id)
         {
             if (id != null)
@@ -86,6 +90,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View();
         }
 
+        [Authorize(Roles = "BlogOwner")]
         [HttpDelete]
         public IActionResult Delete(int id)
         {

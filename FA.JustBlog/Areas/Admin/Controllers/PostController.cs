@@ -2,6 +2,7 @@
 using FA.JustBlog.Core.Models;
 using FA.JustBlog.Core.Models.ViewModels;
 using FA.JustBlog.Core.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -27,6 +28,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View(postsVM);
         }
 
+        [Authorize(Roles = "BlogOwner, Contributor")]
         public IActionResult Edit(int? id)
         {
             if (id != null)
@@ -79,6 +81,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View(postVM);
         }
 
+        [Authorize(Roles = "BlogOwner, Contributor")]
         public IActionResult Create()
         {
             ViewBag.AvailableTags = _unitOfWork.TagRepository.GetAll();
@@ -108,6 +111,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View(postVM);
         }
 
+        [Authorize(Roles = "BlogOwner")]
         [HttpDelete]
         public IActionResult Delete(int id)
         {
@@ -147,6 +151,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View("Index", mostViewedPostsVM);
         }
 
+        [Authorize(Roles = "BlogOwner")]
         public IActionResult Published()
         {
             ViewBag.SortBy = "Published";
@@ -155,6 +160,7 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View("Index", publishedPostsVM);
         }
 
+        [Authorize(Roles = "BlogOwner")]
         public IActionResult Unpublished()
         {
             ViewBag.SortBy = "Unpublished";
