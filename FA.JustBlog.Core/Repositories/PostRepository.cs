@@ -25,7 +25,7 @@ namespace FA.JustBlog.Core.Repositories
 
         public IList<Post> GetPublishedPosts()
         {
-            return _context.Posts.Include(p => p.Category).Where(p => p.Published).ToList();
+            return _context.Posts.Include(p => p.Category).Include(p => p.PostTagMaps).Where(p => p.Published).ToList();
         }
 
         public IList<Post> GetUnpublishedPosts()
