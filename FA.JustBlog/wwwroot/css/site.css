@@ -40,3 +40,9 @@ figure.image figcaption {
 img {
     height: auto;
 }
+
+.bg-logout-image {
+    background: url(https://steemitimages.com/p/5s4dzRwnVbzHYcBd9mF1dVqekSMzvFGvppuUtGx1vgd9YJC8fi5Nf9WWYEpY89ihHK1V5T4nCeBeMS3QirZbUT1r9Adnq47YzEwAXP53kNMAKCNdzRZuJpc8zjDki9bemQUWo3U4dEgFKFBSUQ3er7egTWNFCKpG6TPHa8Q?format=match&mode=fit&width=640);
+    background-position: center;
+    background-size: cover;
+}
