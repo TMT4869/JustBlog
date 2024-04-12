@@ -1,0 +1,27 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole<Guid>
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Role</h1>
+        <hr />
+        <dl class="row border p-3">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+        </dl>
+        <div class="row mt-2">
+            <div class="form-group col-6 col-md-3 d-grid gap-2">
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+            </div>
+            <div class="col-6 col-md-3 d-grid gap-2">
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</main>
