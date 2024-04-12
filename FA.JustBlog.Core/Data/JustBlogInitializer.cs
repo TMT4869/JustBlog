@@ -1,5 +1,6 @@
 ﻿using FA.JustBlog.Core.Models;
 using FA.JustBlog.Core.Utility;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace FA.JustBlog.Core.Data
@@ -184,6 +185,94 @@ namespace FA.JustBlog.Core.Data
                         CommentedTime = new DateTime(2024, 3, 26),
                         PostId = 2
                     });
+
+            modelBuilder.Entity<IdentityRole<Guid>>()
+                .HasData(
+                    new IdentityRole<Guid>
+                    {
+                        Id = Guid.Parse("a927d8cc-a76a-4737-8e82-75152e4d3246"),
+                        Name = "BlogOwner",
+                        NormalizedName = "BLOGOWNER"
+                    },
+                    new IdentityRole<Guid>
+                    {
+                        Id = Guid.Parse("ac097761-8160-4bf6-91ed-18c8002a1584"),
+                        Name = "User",
+                        NormalizedName = "USER"
+                    },
+                    new IdentityRole<Guid>
+                    {
+                        Id = Guid.Parse("87e80a37-565a-4ae0-a48b-0771fedd7d4a"),
+                        Name = "Contributor",
+                        NormalizedName = "CONTRIBUTOR"
+                    });
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasData(
+                    new ApplicationUser
+                    {
+                        Id = Guid.Parse("9d331023-1622-4337-938b-b02fbec5c41e"),
+                        FirstName = "Shinichi",
+                        LastName = "Kudo",
+                        Age = 18,
+                        About = "I'm a high school detective",
+                        UserName = "shinichi@yahoo.com",
+                        NormalizedUserName = "SHINICHI@YAHOO.COM",
+                        Email = "shinichi@yahoo.com",
+                        NormalizedEmail = "SHINICHI@YAHOO.COM",
+                        EmailConfirmed = true,
+                        PasswordHash = new PasswordHasher<ApplicationUser>().HashPassword(null, "shinichi@yahoo.com"),
+                        SecurityStamp = Guid.NewGuid().ToString()
+                    },
+                    new ApplicationUser
+                    {
+                        Id = Guid.Parse("cba58c71-263a-4060-b606-c7efe2ed8ef9"),
+                        FirstName = "Ran",
+                        LastName = "Mouri",
+                        Age = 18,
+                        About = "I love Shinichi Kudo",
+                        UserName = "ran@yahoo.com",
+                        NormalizedUserName = "RAN@YAHOO.COM",
+                        Email = "ran@yahoo.com",
+                        NormalizedEmail = "RAN@YAHOO.COM",
+                        EmailConfirmed = true,
+                        PasswordHash = new PasswordHasher<ApplicationUser>().HashPassword(null, "ran@yahoo.com"),
+                        SecurityStamp = Guid.NewGuid().ToString()
+                    },
+                    new ApplicationUser
+                    {
+                        Id = Guid.Parse("edde2618-6e41-462b-93e2-cd8d9ce0bacb"),
+                        FirstName = "Hao",
+                        LastName = "Nguyen",
+                        Age = 22,
+                        About = "I'm a software developer",
+                        UserName = "admin@gmail.com",
+                        NormalizedUserName = "ADMIN@GMAIL.COM",
+                        Email = "admin@gmail.com",
+                        NormalizedEmail = "ADMIN@GMAIL.COM",
+                        EmailConfirmed = true,
+                        PasswordHash = new PasswordHasher<ApplicationUser>().HashPassword(null, "Admin123$"),
+                        SecurityStamp = Guid.NewGuid().ToString()
+                    });
+
+            modelBuilder.Entity<IdentityUserRole<Guid>>()
+                .HasData(
+                    new IdentityUserRole<Guid>
+                    {
+                        RoleId = Guid.Parse("a927d8cc-a76a-4737-8e82-75152e4d3246"),
+                        UserId = Guid.Parse("edde2618-6e41-462b-93e2-cd8d9ce0bacb")
+                    },
+                    new IdentityUserRole<Guid>
+                    {
+                        RoleId = Guid.Parse("ac097761-8160-4bf6-91ed-18c8002a1584"),
+                        UserId = Guid.Parse("9d331023-1622-4337-938b-b02fbec5c41e")
+                    },
+                    new IdentityUserRole<Guid>
+                    {
+                        RoleId = Guid.Parse("ac097761-8160-4bf6-91ed-18c8002a1584"),
+                        UserId = Guid.Parse("cba58c71-263a-4060-b606-c7efe2ed8ef9")
+                    }
+                );
         }
     }
 }
