@@ -19,11 +19,11 @@ namespace FA.JustBlog.Controllers
 
         private void SeedData()
         {
-            var latestPosts = _unitOfWork.PostRepository.GetLatestPost(5).ToList();
+            var latestPosts = _unitOfWork.PostRepository.GetLatestPost(5).Where(p => p.Published).ToList();
             var latestPostsVM = _mapper.Map<List<PostVM>>(latestPosts);
             ViewBag.SortByLatest = latestPostsVM;
 
-            var mostViewedPosts = _unitOfWork.PostRepository.GetMostViewedPost(5).ToList();
+            var mostViewedPosts = _unitOfWork.PostRepository.GetMostViewedPost(5).Where(p => p.Published).ToList();
             var mostViewedPostsVM = _mapper.Map<List<PostVM>>(mostViewedPosts);
             ViewBag.MostViewedPosts = mostViewedPostsVM;
 
@@ -40,7 +40,7 @@ namespace FA.JustBlog.Controllers
             int pageNumber = (page ?? 1);
             int pageSize = HttpContext.Session.GetInt32("PageSize") ?? 3;
             ViewBag.CurrentPage = page;
-            var posts = _unitOfWork.PostRepository.GetAll();
+            var posts = _unitOfWork.PostRepository.GetPublishedPosts();
             var postsVM = _mapper.Map<List<PostVM>>(posts);
             ViewBag.TotalItems = postsVM.Count;
             ViewBag.Title = "All Posts";
@@ -51,7 +51,7 @@ namespace FA.JustBlog.Controllers
         public IActionResult Category(string name, int? page)
         {
             int pageNumber = (page ?? 1);
-            int pageSize = HttpContext.Session.GetInt32("PageSize") ?? 1;
+            int pageSize = HttpContext.Session.GetInt32("PageSize") ?? 2;
             var posts = _unitOfWork.PostRepository.GetPostsByCategory(name);
             var postsVM = _mapper.Map<List<PostVM>>(posts);
             ViewBag.TotalItems = postsVM.Count;
@@ -63,7 +63,7 @@ namespace FA.JustBlog.Controllers
         public IActionResult Tag(string name, int? page)
         {
             int pageNumber = (page ?? 1);
-            int pageSize = HttpContext.Session.GetInt32("PageSize") ?? 1;
+            int pageSize = HttpContext.Session.GetInt32("PageSize") ?? 2;
             var posts = _unitOfWork.PostRepository.GetPostsByTag(name).ToList();
             var postsVM = _mapper.Map<List<PostVM>>(posts);
             ViewBag.TotalItems = postsVM.Count;
