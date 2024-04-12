@@ -19,9 +19,9 @@
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-2">Log out</h1>
+                                    <h1 class="h4 text-gray-900 mb-2">See you next time!</h1>
                                     <p class="mb-4">
-                                        Are you sure?
+                                        Are you sure? We will miss you!
                                     </p>
                                 </div>
                                 @{
@@ -30,6 +30,10 @@
                                         <form class="user" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
                                             <button type="submit" class="btn btn-primary btn-user btn-block">Click here to Logout</button>
                                         </form>
+                                        <hr />
+                                        <div class="text-center">
+                                            <a asp-area="" asp-controller="Post" asp-action="Index" class="small">Return back to blog</a>
+                                        </div>
                                     }
                                     else
                                     {
