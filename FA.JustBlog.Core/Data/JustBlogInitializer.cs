@@ -253,6 +253,21 @@ namespace FA.JustBlog.Core.Data
                         EmailConfirmed = true,
                         PasswordHash = new PasswordHasher<ApplicationUser>().HashPassword(null, "Admin123$"),
                         SecurityStamp = Guid.NewGuid().ToString()
+                    },
+                    new ApplicationUser
+                    {
+                        Id = Guid.Parse("cab68f9e-3196-489a-9c64-77409619e6b5"),
+                        FirstName = "Enzo",
+                        LastName = "Fernández",
+                        Age = 23,
+                        About = "Football player likes to write blogs",
+                        UserName = "enzo@chelsea.com",
+                        NormalizedUserName = "ENZO@CHELSEA.COM",
+                        Email = "enzo@chelsea.com",
+                        NormalizedEmail = "ENZO@CHELSEA.COM",
+                        EmailConfirmed = true,
+                        PasswordHash = new PasswordHasher<ApplicationUser>().HashPassword(null, "8Chelsea"),
+                        SecurityStamp = Guid.NewGuid().ToString()
                     });
 
             modelBuilder.Entity<IdentityUserRole<Guid>>()
@@ -271,8 +286,12 @@ namespace FA.JustBlog.Core.Data
                     {
                         RoleId = Guid.Parse("ac097761-8160-4bf6-91ed-18c8002a1584"),
                         UserId = Guid.Parse("cba58c71-263a-4060-b606-c7efe2ed8ef9")
-                    }
-                );
+                    },
+                    new IdentityUserRole<Guid>()
+                    {
+                        RoleId = Guid.Parse("87e80a37-565a-4ae0-a48b-0771fedd7d4a"),
+                        UserId = Guid.Parse("cab68f9e-3196-489a-9c64-77409619e6b5")
+                    });
         }
     }
 }
