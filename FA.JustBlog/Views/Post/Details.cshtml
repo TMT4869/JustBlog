@@ -4,7 +4,7 @@
 
 @{
     int count = ViewBag.Comments.Count;
-    var commentList = ViewBag.Comments as List<CommentVM>;
+    var comments = ViewBag.Comments as List<CommentVM>;
     ViewBag.Title = Model.Title;
 }
 
@@ -50,10 +50,10 @@
                     <h3 class="section-subheading text-muted">What do you think about this post?</h3>
                     <h4 class="section-subheading text-muted">@count comment(s)</h4>
                 </div>
-                @if (count > 0)
+                @if (comments != null && count > 0)
                 {
                     <div class="d-flex mt-4">
-                        @foreach (var item in commentList)
+                        @foreach (var item in comments)
                         {
                             <img class="d-flex rounded-circle me-2" src="https://top10camau.vn/wp-content/uploads/2022/10/avatar-meo-cute-5.jpg" alt="Image Description" style="max-width: 50px; max-height: 50px;">
                             <div class="shadow-sm p-3 bg-body rounded flex-grow-1 ml-3">
