@@ -100,6 +100,11 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             var userVM = _mapper.Map<UserVM>(user);
             await GetRolesOfUserAsync(userVM);
             ViewBag.Roles = _roleManager.Roles;
+
+            // Pass the current logged in user's username to the view
+            var loggedInUser = await _userManager.GetUserAsync(User);
+            ViewBag.CurrentUserName = loggedInUser.UserName;
+
             return View(userVM);
         }
 
@@ -170,6 +175,15 @@ namespace FA.JustBlog.Areas.Admin.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(string id)
         {
+            // Get the current logged in user
+            var loggedInUser = await _userManager.GetUserAsync(User);
+
+            // Prevent the logged in user from deleting their own account
+            if (loggedInUser.Id.ToString() == id)
+            {
+                return Json(new { status = false, message = "You cannot delete your own account." });
+            }
+
             var user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
@@ -186,5 +200,6 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             }
             return Json(new { status = false });
         }
+
     }
 }
