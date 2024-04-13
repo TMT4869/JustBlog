@@ -1,3 +1,13 @@
-﻿<img src="~/assets/img/about-bg.jpg" alt="about-bg" class="mw-100" />
+﻿@using FA.JustBlog.Core.Models
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    var user = SignInManager.IsSignedIn(User) ? await UserManager.GetUserAsync(User) : null;
+}
+
+<img src="~/assets/img/about-bg.jpg" alt="about-bg" class="mw-100" />
 <h2>About Me!</h2>
-<div>Just me, myself and I, exploring the universe of unknowment. I have a heart of love and a interest</div>
+<div>@(user?.About ?? "Just me, myself and I, exploring the universe of unknowment. I have a heart of love and a interest")</div>
+
