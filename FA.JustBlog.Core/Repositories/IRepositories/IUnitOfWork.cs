@@ -6,6 +6,7 @@
         ICategoryRepository CategoryRepository { get; }
         ITagRepository TagRepository { get; }
         ICommentRepository CommentRepository { get; }
+        IAuthenticationRepository AuthenticationRepository { get; }
         int Save();
     }
 }

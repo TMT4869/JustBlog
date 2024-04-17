@@ -1,19 +1,29 @@
 ﻿using FA.JustBlog.Core.Data;
+using FA.JustBlog.Core.Models;
 using FA.JustBlog.Core.Repositories.IRepositories;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 
 namespace FA.JustBlog.Core.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly JustBlogContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IConfiguration _configuration;
+        private readonly RoleManager<IdentityRole<Guid>> _roleManager;
         private IPostRepository _postRepository;
         private ITagRepository _tagRepository;
         private ICategoryRepository _categoryRepository;
         private ICommentRepository _commentRepository;
+        private IAuthenticationRepository _authenticationRepository;
 
-        public UnitOfWork(JustBlogContext context)
+        public UnitOfWork(JustBlogContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole<Guid>> roleManager, IConfiguration configuration)
         {
             _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _configuration = configuration;
         }
 
         public IPostRepository PostRepository
@@ -45,6 +55,14 @@ namespace FA.JustBlog.Core.Repositories
             get
             {
                 return _commentRepository ??= new CommentRepository(_context);
+            }
+        }
+
+        public IAuthenticationRepository AuthenticationRepository
+        {
+            get
+            {
+                return _authenticationRepository ??= new AuthenticationRepository(_context, _userManager, _roleManager, _configuration);
             }
         }
 
