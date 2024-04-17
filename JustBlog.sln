@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FA.JustBlog", "FA.JustBlog\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FA.JustBlog.Core", "FA.JustBlog.Core\FA.JustBlog.Core.csproj", "{E2783707-29E0-4A80-865F-B78EEDF01507}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FA.JustBlog.API", "FA.JustBlog.API\FA.JustBlog.API.csproj", "{EE711B34-7DE9-43B5-84CC-86CE07668CDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E2783707-29E0-4A80-865F-B78EEDF01507}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2783707-29E0-4A80-865F-B78EEDF01507}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2783707-29E0-4A80-865F-B78EEDF01507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE711B34-7DE9-43B5-84CC-86CE07668CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE711B34-7DE9-43B5-84CC-86CE07668CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE711B34-7DE9-43B5-84CC-86CE07668CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE711B34-7DE9-43B5-84CC-86CE07668CDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
