@@ -1,0 +1,6 @@
+@FA.JustBlog.API_HostAddress = http://localhost:5119
+
+GET {{FA.JustBlog.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
